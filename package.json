@@ -1,6 +1,19 @@
 {
   "name": "online-xsd-pattern",
   "version": "0.1.0",
+  "author": "sboreux",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sboreux/online-xsd-pattern"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+                "xml",
+                "schema",
+                "pattern",
+    "xsd",
+    "regexp"
+        ],
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
