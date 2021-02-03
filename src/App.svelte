@@ -20,7 +20,7 @@
 	<h1>Xsd Pattern Tester</h1>
 	<div class="input">
 		<div>
-			<label htmlFor="pattern">Pattern</label>
+			<label for="pattern">Pattern</label>
 			<input
 				id="pattern"
 				bind:value={pattern}
@@ -29,7 +29,7 @@
 			/>
 		</div>
 		<div>
-			<label htmlFor="testValue">Test value</label>
+			<label for="testValue">Test value</label>
 			<input
 				id="testValue"
 				bind:value={testValue}
