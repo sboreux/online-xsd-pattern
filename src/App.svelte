@@ -24,7 +24,7 @@
 			<input
 				id="pattern"
 				bind:value={pattern}
-				class={!result.isPatternValid.result ? "invalid" : ""}
+				class={!result.isPatternValid.result ? "invalid" : "valid"}
 				type="text"
 			/>
 		</div>
@@ -35,18 +35,18 @@
 				bind:value={testValue}
 				class={result.isPatternValid.result && !result.isInputValid
 					? "invalid"
-					: ""}
+					: "valid"}
 				type="text"
 			/>
 		</div>
 	</div>
 	{#if !result.isPatternValid.result}
-		<p>
+		<p class="invalid">
 			pattern {pattern} is not valid because {result.isPatternValid
 				.reason}.
 		</p>
 	{:else}
-		<p>
+		<p class={!result.isInputValid ? "invalid" : "valid"}>
 			The input "{testValue}" is {result.isInputValid} against "{pattern}".
 		</p>
 	{/if}
@@ -83,7 +83,21 @@
 		}
 	}
 
-	.invalid {
-		border: 2px solid red;
+	input.invalid {
+		outline: 2px solid red;
 	}
+
+	p {
+		padding: 2rem 4rem;
+		margin: 0;
+	}
+
+	p.invalid {
+		background-color: rgba(247, 59, 59, 0.5);
+	}
+
+	p.valid {
+		background-color: rgba(0, 128, 0, 0.5);
+	}
+
 </style>
