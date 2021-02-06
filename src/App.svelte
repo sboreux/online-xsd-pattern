@@ -13,6 +13,8 @@
       isInputValid: xsdPattern.isValid().result && xsdPattern.match(testValue)
     }
   }
+
+  $: isValid = result.isPatternValid.result && result.isInputValid
 </script>
 
 <main>
@@ -23,7 +25,7 @@
       <input
         id="pattern"
         bind:value={pattern}
-        class={!result.isPatternValid.result ? "invalid" : "valid"}
+        class={!result.isPatternValid.result ? "invalid" : ""}
         type="text"
       />
     </div>
@@ -34,20 +36,18 @@
         bind:value={testValue}
         class={result.isPatternValid.result && !result.isInputValid
           ? "invalid"
-          : "valid"}
+          : ""}
         type="text"
       />
     </div>
   </div>
-  {#if !result.isPatternValid.result}
-    <p class="invalid">
-      pattern {pattern} is not valid because {result.isPatternValid.reason}.
-    </p>
-  {:else}
-    <p class={!result.isInputValid ? "invalid" : "valid"}>
+  <p class={isValid ? "valid" : "invalid"}>
+    {#if !result.isPatternValid.result}
+      Pattern {pattern} is not valid because {result.isPatternValid.reason}.
+    {:else}
       The input "{testValue}" is {result.isInputValid} against "{pattern}".
-    </p>
-  {/if}
+    {/if}
+  </p>
 </main>
 
 <style>
@@ -81,20 +81,20 @@
     }
   }
 
-  input.invalid {
-    outline: 2px solid red;
-  }
-
   p {
     padding: 2rem 4rem;
+    font-weight: 700;
+    font-size: 1.2rem;
     margin: 0;
   }
 
-  p.invalid {
+  .invalid {
     background-color: rgba(247, 59, 59, 0.5);
+    transition: background-color 0.5s linear;
   }
 
-  p.valid {
+  .valid {
     background-color: rgba(0, 128, 0, 0.5);
+    transition: background-color 0.5s linear;
   }
 </style>
